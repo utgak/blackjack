@@ -1,9 +1,7 @@
 class Hand
   attr_accessor :cards
-  attr_reader :points
   def initialize
     @cards = []
-    @points = self.count_points
   end
 
   def <<(card)
@@ -27,7 +25,7 @@ class Hand
     end
     if points > 21 and ace == 1
       points - 10
-    elsif points == 32 and ace == 2
+    elsif points == 33 and ace == 2
       points - 20
     elsif points > 21 and ace > 1
       points - 10 * (ace - 1)

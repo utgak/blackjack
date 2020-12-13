@@ -7,6 +7,8 @@ require_relative 'deck.rb'
 
 class Main
 
+  attr_reader :name, :player, :deck, :dealer
+
   def initialize(name)
     @dealer = Player.new("dealer")
     @dealer.hand = Hand.new
@@ -25,25 +27,16 @@ class Main
       @dealer.hand << @deck.get_a_card
       @player.hand << @deck.get_a_card
     end
-    puts("#{@name} cards is #{@player.hand.icons}points: #{@player.hand.count_points}, money: #{@player.bank}")
-    puts("Dealer ** money: #{@dealer.bank}")
     @player.bank -= 10
     @dealer.bank -= 10
-    player_step
   end
 
-  def player_step
-    puts("Select an action
-1. Skip
-2. Add card
-3. Showdown")
-    option = gets.chomp.to_i
+  def player_step(option)
     case option
     when 1
       dealer_step
     when 2
       @player.hand << @deck.get_a_card
-      puts("#{@name} cards is #{@player.hand.icons }points: #{@player.hand.count_points}")
       dealer_step
     when 3
       dealer_step
@@ -52,38 +45,19 @@ class Main
 
   def dealer_step
     @dealer.hand << @deck.get_a_card if @dealer.hand.count_points < 17
-    endgame
   end
 
   def endgame
-    puts("Dealer cards is #{@dealer.hand.icons}points: #{@dealer.hand.count_points}")
     if ((@player.hand.count_points > @dealer.hand.count_points) or @dealer.hand.count_points > 21) and @player.hand.count_points <= 21
       @player.bank += 20
-      puts("#{@name} won")
+      :player
     elsif ((@dealer.hand.count_points > @player.hand.count_points) or @player.hand.count_points > 21) and @dealer.hand.count_points <= 21
       @dealer.bank += 20
-      puts("Dealer won")
+      :dealer
     else
-      puts("Draw")
       @dealer.bank += 10
       @player.bank += 10
-    end
-    continue
-  end
-
-  def continue
-    puts("do you want to continue? (y/n)")
-    option = gets.chomp
-    case option
-    when "y"
-      start_game
-    when "n"
-      exit(0)
+      :draw
     end
   end
 end
-
-puts "Enter your name"
-name = gets.chomp
-game = Main.new(name)
-game.start_game
