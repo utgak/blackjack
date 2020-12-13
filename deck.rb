@@ -16,7 +16,7 @@ class Deck
   def renew_deck
     VALUES.each do |val|
       SUITS.each do |suit|
-        if /A/.match(val)
+        if /A/.match?(val)
           @deck << {"#{suit + val}" => 11}
         elsif /J|Q|k/.match?(val)
           @deck << {"#{suit + val}" => 10}
