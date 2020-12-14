@@ -11,7 +11,7 @@ class Interface
 
   def start_game
     @game.start_game
-    puts("#{@game.name} cards is #{@game.player.hand.icons}points: #{@game.player.hand.count_points}, money: #{@game.player.bank}")
+    puts("#{@game.player.name} cards is #{icons(:player) }points: #{@game.player.hand.count_points}, money: #{@game.player.bank}")
     puts("Dealer ** money: #{@game.dealer.bank}")
     player_step
   end
@@ -23,15 +23,15 @@ class Interface
 3. Showdown")
     option = gets.chomp.to_i
     @game.player_step(option)
-    puts("#{@game.name} cards is #{@game.player.hand.icons }points: #{@game.player.hand.count_points}")
+    puts("#{@game.player.name} cards is #{icons(:player) }points: #{@game.player.hand.count_points}")
     endgame
   end
 
   def endgame
-    puts("Dealer cards is #{@game.dealer.hand.icons}points: #{@game.dealer.hand.count_points}")
+    puts("Dealer cards is #{icons(:dealer) }points: #{@game.dealer.hand.count_points}")
     case @game.endgame
     when :player
-      puts("#{@game.name} won")
+      puts("#{@game.player.name} won")
     when :dealer
       puts("Dealer won")
     when :draw
@@ -49,6 +49,14 @@ class Interface
     when "n"
       exit(0)
     end
+  end
+
+  def icons(player)
+    icons = ""
+    eval("@game.#{player}.hand.cards").each do |card|
+      icons += card.suit + ", "
+    end
+    icons
   end
 end
 

@@ -4,6 +4,7 @@
 require_relative 'player.rb'
 require_relative 'hand.rb'
 require_relative 'deck.rb'
+require_relative 'card.rb'
 
 class Main
 
@@ -15,7 +16,6 @@ class Main
     @player = Player.new(name)
     @player.hand = Hand.new
     @deck = Deck.new
-    @name = name
   end
 
 

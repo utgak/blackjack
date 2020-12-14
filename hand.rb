@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+# ruby
+
+
 class Hand
+
   attr_accessor :cards
+
   def initialize
     @cards = []
   end
@@ -16,31 +22,13 @@ class Hand
     points = 0
     ace = 0
     @cards.each do |card|
-      card.each_pair do |suit,point|
-        if suit == :♡a or suit == :♢a or suit == :♤a or suit == :♧a
-          ace += 1
-        end
-        points += point
-      end
+      points += card.value
+      ace += 1 if card.ace?
     end
-    if points > 21 and ace == 1
-      points - 10
-    elsif points == 32 and ace == 2
-      points - 20
-    elsif points > 21 and ace > 1
-      points - 10 * (ace - 1)
-    else
-      points
+    ace.times do
+      break if points < 22
+      points -= 10
     end
-  end
-
-  def icons
-    icons = ""
-    @cards.each do |card|
-      card.each_key do |key|
-        icons << key.to_s + ", "
-      end
-    end
-    icons
+    points
   end
 end
