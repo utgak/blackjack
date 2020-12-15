@@ -7,7 +7,6 @@ require_relative 'deck.rb'
 require_relative 'card.rb'
 
 class Main
-
   attr_reader :name, :player, :deck, :dealer
 
   def initialize(name)

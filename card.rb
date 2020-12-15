@@ -1,5 +1,4 @@
 class Card
-
   attr_accessor :value, :suit
   class << self; attr_reader :suits, :values end
 
