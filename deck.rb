@@ -12,8 +12,8 @@ class Deck
   end
 
   def renew_deck
-    Card.values.each do |val|
-      Card.suits.each do |suit|
+    Card::VALUES.each do |val|
+      Card::SUITS.each do |suit|
         @cards << Card.new(suit, val)
       end
     end
