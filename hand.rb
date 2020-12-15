@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-# ruby
-
-
 class Hand
   attr_accessor :cards
 

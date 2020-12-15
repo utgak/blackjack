@@ -11,18 +11,10 @@ class Card
   end
 
   def picture?
-    if /J|Q|K/.match?(@value)
-      true
-    else
-      false
-    end
+    /J|Q|K/.match?(@value)
   end
 
   def ace?
-    if /A/.match?(@value)
-      true
-    else
-      false
-    end
+    /A/.match?(@value)
   end
 end

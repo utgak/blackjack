@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# ruby
-
 require_relative 'player.rb'
 require_relative 'hand.rb'
 require_relative 'deck.rb'
@@ -45,10 +42,10 @@ class Main
   end
 
   def endgame
-    if ((@player.hand.count_points > @dealer.hand.count_points) or @dealer.hand.count_points > 21) and @player.hand.count_points <= 21
+    if (@player.hand.count_points > @dealer.hand.count_points or @dealer.hand.count_points > 21) and @player.hand.count_points <= 21
       @player.bank += 20
       :player
-    elsif ((@dealer.hand.count_points > @player.hand.count_points) or @player.hand.count_points > 21) and @dealer.hand.count_points <= 21
+    elsif (@dealer.hand.count_points > @player.hand.count_points or @player.hand.count_points > 21) and @dealer.hand.count_points <= 21
       @dealer.bank += 20
       :dealer
     else

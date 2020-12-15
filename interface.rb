@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# ruby
+
 require_relative 'main.rb'
 
 class Interface

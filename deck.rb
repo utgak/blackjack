@@ -1,5 +1,4 @@
 require_relative 'card.rb'
-require_relative 'hand.rb'
 class Deck
 
   attr_accessor :cards
@@ -15,7 +14,7 @@ class Deck
   def renew_deck
     Card.values.each do |val|
       Card.suits.each do |suit|
-        @cards <<  Card.new(suit, val)
+        @cards << Card.new(suit, val)
       end
     end
   end
