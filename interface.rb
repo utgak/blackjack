@@ -54,7 +54,7 @@ class Interface
   def icons(player)
     icons = ""
     eval("@game.#{player}.hand.cards").each do |card|
-      icons += card.suit + ", "
+      icons += card.suit + card.value + ", "
     end
     icons
   end

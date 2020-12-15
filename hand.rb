@@ -22,7 +22,13 @@ class Hand
     points = 0
     ace = 0
     @cards.each do |card|
-      points += card.value
+      if /\d/.match?(card.value)
+        points += card.value.to_i
+      elsif card.picture?
+        points += 10
+      elsif card.ace?
+        points += 11
+      end
       ace += 1 if card.ace?
     end
     ace.times do

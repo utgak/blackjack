@@ -1,24 +1,18 @@
 class Card
 
   attr_accessor :value, :suit
+  class << self; attr_reader :suits, :values end
 
-  def initialize(suit)
+  @suits = %w[♡ ♢ ♤ ♧]
+  @values = %w[1 2 3 4 5 6 7 8 9 10 J Q K A]
+
+  def initialize(suit,value)
     @suit = suit
-    @value = self.card_value
-  end
-
-  def card_value
-    if /\d/.match?(@suit)
-      suit.delete_prefix(suit[0]).to_i
-    elsif self.picture?
-      10
-    elsif self.ace?
-      11
-    end
+    @value = value
   end
 
   def picture?
-    if /J|Q|K/.match?(@suit)
+    if /J|Q|K/.match?(@value)
       true
     else
       false
@@ -26,7 +20,7 @@ class Card
   end
 
   def ace?
-    if /A/.match?(@suit)
+    if /A/.match?(@value)
       true
     else
       false

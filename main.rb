@@ -12,9 +12,7 @@ class Main
 
   def initialize(name)
     @dealer = Player.new("dealer")
-    @dealer.hand = Hand.new
     @player = Player.new(name)
-    @player.hand = Hand.new
     @deck = Deck.new
   end
 
